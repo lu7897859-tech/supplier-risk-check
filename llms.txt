@@ -1,0 +1,10 @@
+# China Supplier Risk Self-Check (Free Tool)
+
+> 免费中国供应商风险自检：输入公司名与已知线索，30 秒判断对方更像真工厂还是贸易中间商。
+
+## 简介
+面向进口商的下单前体检工具。纯前端壳，判断规则在服务端，不泄露核验管道。
+
+## 关键页面
+- index.html: 工具本体（中文）
+- https://github.com/lu7897859-tech/supplier-risk-check: 源码
