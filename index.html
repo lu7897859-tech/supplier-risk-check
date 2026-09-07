@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国供应商风险自检 · 免费工具</title>
+<meta name="description" content="免费核验一家中国供应商是否像真实工厂：输入公司名与已知线索，30 秒出风险信号。帮进口商在下单付款前避开贸易公司冒充工厂的坑。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://lu7897859-tech.github.io/supplier-risk-check/">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 40px 20px 80px; }
+  h1 { font-size: 26px; margin-bottom: 8px; color: #fff; }
+  .sub { color: #94a3b8; font-size: 14px; margin-bottom: 28px; line-height: 1.6; }
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+  label { display: block; font-size: 13px; color: #cbd5e1; margin: 14px 0 6px; }
+  input, select { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #e2e8f0; font-size: 14px; }
+  input:focus, select:focus { outline: 2px solid #38bdf8; border-color: transparent; }
+  .hint { font-size: 11px; color: #64748b; margin-top: 4px; }
+  .btn { width: 100%; margin-top: 20px; padding: 13px; background: #38bdf8; color: #0f172a; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; }
+  .btn:hover { background: #7dd3fc; }
+  .btn:disabled { opacity: .5; cursor: wait; }
+  .result { display: none; margin-top: 8px; }
+  .result.show { display: block; }
+  .level { font-size: 22px; font-weight: 800; padding: 14px 18px; border-radius: 10px; margin-bottom: 14px; }
+  .level.high { background: rgba(239,68,68,.15); color: #fca5a5; border: 1px solid #ef4444; }
+  .level.mid { background: rgba(245,158,11,.12); color: #fcd34d; border: 1px solid #f59e0b; }
+  .level.low { background: rgba(34,197,94,.12); color: #86efac; border: 1px solid #22c55e; }
+  ul { list-style: none; }
+  li { padding: 8px 0 8px 22px; position: relative; font-size: 14px; line-height: 1.5; border-bottom: 1px dashed #334155; }
+  li:last-child { border-bottom: none; }
+  .verdict { background: #0f172a; border-left: 3px solid #38bdf8; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-top: 14px; font-size: 14px; line-height: 1.6; color: #bae6fd; }
+  .note { font-size: 11px; color: #64748b; margin-top: 14px; line-height: 1.5; }
+  .free-badge { display: inline-block; background: #059669; color: #fff; font-size: 11px; padding: 3px 10px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
+  .err { color: #f87171; font-size: 13px; margin-top: 10px; display: none; }
+  .footer { text-align: center; color: #475569; font-size: 12px; margin-top: 40px; line-height: 1.8; }
+  .footer a { color: #64748b; }
+  .powered { margin-top: 30px; padding: 14px; background: #16233c; border-radius: 10px; font-size: 13px; color: #94a3b8; text-align: center; border: 1px dashed #334155; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>中国供应商风险自检 <span class="free-badge">免费 · 每日限次</span></h1>
+  <div class="sub">进口商下单付款前的 30 秒体检：输入一家中国供应商的信息，立即判断它<b>更像真工厂还是贸易中间商</b>。帮您避开「看起来正规、其实是皮包/贸易公司冒充」的坑。</div>
+
+  <div class="card">
+    <label>公司名称 *</label>
+    <input id="name" placeholder="例如：Shenzhen ABC Import & Export Co Ltd / 深圳市XX进出口有限公司">
+    <div class="hint">中英文均可。可从 1688 / Alibaba / 对方名片 / 报价单获得。</div>
+
+    <label>经营范围（选填）</label>
+    <input id="scope" placeholder="例如：进出口贸易 / 生产销售电子产品（可抄营业执照）">
+    <div class="hint">营业执照上的经营范围最准。关键看是否含「生产/制造」。</div>
+
+    <label>注册资本（选填）</label>
+    <input id="capital" placeholder="例如：10万 或 500万">
+    <div class="hint">可查国家企业信用信息公示系统或让对方提供执照。</div>
+
+    <label>对方是否愿意视频验厂？（选填）</label>
+    <select id="video">
+      <option value="no_ask">还没问过</option>
+      <option value="agree">愿意视频看车间</option>
+      <option value="refuse">拒绝 / 找借口推脱</option>
+    </select>
+
+    <label>公司成立几年？（选填）</label>
+    <input id="years" placeholder="例如：3">
+    <div class="hint">新公司（<2 年）无历史沉淀，风险偏高。</div>
+
+    <button class="btn" id="go">开始自检</button>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="level" id="level"></div>
+    <ul id="signals"></ul>
+    <div class="verdict" id="verdict"></div>
+    <div class="note" id="note"></div>
+  </div>
+
+  <div class="powered">⚙️ 判断引擎在服务端运行（规则不下发）。本工具为免费体验层——需要带证据链的正式核验报告，见<a href="https://lunarwave8803.gumroad.com/" style="color:#7dd3fc">付费深度版</a>。</div>
+
+  <div class="footer">
+    数据与方法基于公开行业规律 · 结论仅供参考，不构成交易建议<br>
+    <a href="https://github.com/lu7897859-tech/supplier-risk-check">开源壳</a> · 由 QClaw 机床驱动
+  </div>
+</div>
+
+<script>
+const API = 'https://stewart-scene-website-juice.trycloudflare.com/api/verify';
+const btn = document.getElementById('go');
+const errEl = document.getElementById('err');
+function showErr(msg){ errEl.textContent = msg; errEl.style.display = 'block'; }
+function hideErr(){ errEl.style.display = 'none'; }
+btn.onclick = async () => {
+  hideErr();
+  const name = document.getElementById('name').value.trim();
+  if (!name) { showErr('请至少填写公司名称'); return; }
+  btn.disabled = true; btn.textContent = '核验中…';
+  try {
+    const r = await fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        company_name: name,
+        business_scope: document.getElementById('scope').value.trim(),
+        registered_capital: document.getElementById('capital').value.trim(),
+        has_video: document.getElementById('video').value,
+        years: document.getElementById('years').value.trim()
+      })
+    });
+    const j = await r.json();
+    if (!j.ok) { showErr(j.msg || '服务暂不可用，请稍后再试'); btn.disabled=false; btn.textContent='开始自检'; return; }
+    const res = j.result;
+    const lv = document.getElementById('level');
+    lv.textContent = res.level;
+    lv.className = 'level ' + (res.level.includes('高') ? 'high' : res.level.includes('中') ? 'mid' : 'low');
+    const ul = document.getElementById('signals');
+    ul.innerHTML = '';
+    res.signals.forEach(s => { const li = document.createElement('li'); li.textContent = s; ul.appendChild(li); });
+    document.getElementById('verdict').textContent = '💡 ' + res.verdict;
+    document.getElementById('note').textContent = res.note || '';
+    document.getElementById('result').classList.add('show');
+    document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch(e) {
+    showErr('网络错误：' + e.message + '。请重试');
+  }
+  btn.disabled = false; btn.textContent = '开始自检';
+};
+</script>
+</body>
+</html>
