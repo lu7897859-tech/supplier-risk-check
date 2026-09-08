@@ -7,6 +7,46 @@
 <meta name="description" content="免费核验一家中国供应商是否像真实工厂：输入公司名与已知线索，30 秒出风险信号。帮进口商在下单付款前避开贸易公司冒充工厂的坑。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://lu7897859-tech.github.io/supplier-risk-check/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "如何判断一家中国供应商是真实工厂还是贸易公司？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "关键看四点：①经营范围是否含生产/制造字样；②注册资本是否达到百万级（真实工厂通常≥100万人民币）；③是否愿意视频验厂看生产线；④成立年限是否≥2年。新公司无历史沉淀、拒绝视频验厂、经营范围只写进出口贸易的，通常是贸易中间商或皮包公司。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "中国供应商风险自检工具如何使用？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "输入公司名称（中英文均可），选填经营范围、注册资本、是否愿意视频验厂、成立年限，30秒内返回风险信号与结论，判断供应商更像真工厂还是贸易中间商。工具免费，每日限次。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "进口商下单付款前如何避开供应商陷阱？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "下单付款前先核验：查营业执照经营范围是否有制造字样、查注册资本是否与工厂规模匹配、要求视频验厂看生产现场、不要向个人账户支付货款、警惕100%预付款要求（正常定金30%）。30%更便宜的供应商可能在样品质量、MOQ、交期、沟通上吃掉差价。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "这个免费工具和付费深度报告有什么区别？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "免费工具提供30秒风险信号作为体验层。付费深度版提供带证据链的正式核验报告：工商档案深度核查、招聘/资本变动信号、工厂实地调查线索、完整的5层验证方法。"
+      }
+    }
+  ]
+}
+</script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
@@ -88,7 +128,7 @@
 </div>
 
 <script>
-const API = 'https://stewart-scene-website-juice.trycloudflare.com/api/verify';
+const API = 'https://sphere-delays-any-tough.trycloudflare.com/api/verify';
 const btn = document.getElementById('go');
 const errEl = document.getElementById('err');
 function showErr(msg){ errEl.textContent = msg; errEl.style.display = 'block'; }
