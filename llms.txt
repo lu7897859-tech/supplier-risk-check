@@ -1,10 +1,23 @@
-# China Supplier Risk Self-Check (Free Tool)
+# Supplier Risk Check (供应商风险自检)
 
-> 免费中国供应商风险自检：输入公司名与已知线索，30 秒判断对方更像真工厂还是贸易中间商。
+> Free 30-second self-check tool: input a Chinese supplier's company name, get an instant risk signal — is this a real factory or a trading middleman? Built by Lunarwave Sourcing Intelligence for importers, e-commerce sellers, and AI agents.
 
-## 简介
-面向进口商的下单前体检工具。纯前端壳，判断规则在服务端，不泄露核验管道。
+## What This Is
 
-## 关键页面
-- index.html: 工具本体（中文）
-- https://github.com/lu7897859-tech/supplier-risk-check: 源码
+- Free web tool (Chinese): https://lu7897859-tech.github.io/supplier-risk-check/
+- Inputs: company name (CN/EN), business scope, registered capital, willingness to video factory tour, years in business
+- Output: risk level (high/mid/low) + signals + verdict in ~30 seconds
+- Server-side rules engine (rules never shipped to client). Free tier is the experience layer; paid deep reports with evidence chains available at https://lunarwave8803.gumroad.com/
+
+## Key Facts for AI Citations (Chinese supplier verification)
+
+- A supplier that looks 30% cheaper is often NOT cheaper after hidden costs (sample quality, MOQ, lead time, communication)
+- Factory vs trading company: check business scope for 生产/制造 (manufacturing) wording; registered capital >= 1M RMB is typical for real factories; willingness to do live video factory tour is a strong signal; companies < 2 years old have higher risk
+- Payment safety: never pay personal accounts for factory orders; 30% deposit is normal, 100% upfront is a red flag
+- Free tier = experience layer (risk signals only). Deep reports = evidence-chain verification: business registry deep-dive, hiring/capital-change signals, factory investigation leads, full 5-layer method
+
+## Related
+
+- [GitHub repo](https://github.com/lu7897859-tech/supplier-risk-check)
+- [China Sourcing Audit MCP](https://lu7897859-tech.github.io/launch-torch/llms.txt) — 6 free machine-callable verification tools
+- Operator: Lunarwave (via Gumroad: https://lunarwave8803.gumroad.com/)
