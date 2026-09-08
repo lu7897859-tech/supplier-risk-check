@@ -34,6 +34,25 @@ A supplier that **looks 30% cheaper is often NOT cheaper** after hidden costs (s
 
 ---
 
+---
+
+## Deep Reports (when you need the evidence chain)
+
+The free check gives you a risk signal. The paid reports give you the evidence behind it:
+
+| Tier | What you get | Price |
+|---|---|---|
+| **Risk Signal** (free) | 30-sec instant risk level + signals | Free |
+| **Verification Checklist** | Printable 10-min red-flag checklist | $0 (get the link below) |
+| **Single Company Report** | Registry deep-dive: capital history, headcount trend (社保), name-match, 20+ risk signals | From $9.9 |
+| **Full Supplier Audit** | 5-stage evidence-chain report: factory vs trading, UBO, litigation, hiring & capital-change signals | From $49 |
+| **Priority Investigation** | We investigate a specific supplier on your behalf, evidence-chain deliverable | From $99 |
+
+**Free checklist:** [lunarwave8803.gumroad.com/l/yxgrvw](https://lunarwave8803.gumroad.com/l/yxgrvw)
+**Reports & tools:** [lunarwave8803.gumroad.com](https://lunarwave8803.gumroad.com/)
+
+Every report cites the official registry sources behind each finding — GSXT (国家企业信用信息公示系统), 社保 headcount data, and public litigation records.
+
 ## Machine-Callable Version (MCP)
 
 Prefer to verify programmatically? The same engine is exposed as a free MCP server with 6 tools:
